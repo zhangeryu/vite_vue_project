@@ -19,6 +19,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
 
   return {
     plugins: [vue()],
+
     server: {
       host: '0.0.0.0',
       port: VITE_PORT,
