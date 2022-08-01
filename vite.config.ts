@@ -1,9 +1,10 @@
 import { ConfigEnv, UserConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { createProxy } from './build/vite/proxy'
 import { wrapperEnv } from './build/utils'
 import { OUTPUT_DIR } from './build/constant' // 打包出口文件名 dist
+import { generateModifyVars } from './build/generate/generateModifyVars' // 随机生成颜色列表
+import { createVitePlugins } from './build/vite/plugin' // plugin配置表
 
 // process.cwd() 返回 Node.js 进程的当前工作目录
 function pathResolve(dir: string) {
@@ -11,15 +12,13 @@ function pathResolve(dir: string) {
 }
 
 // https://vitejs.dev/config/
-export default ({ mode }: ConfigEnv): UserConfig => {
+export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd() // 先获取当前根目录
   const env = loadEnv(mode, root) // 获取当前根目录下的env文件
-  const viteENV = wrapperEnv(env) // 获取env环境变量参数值
-  const { VITE_PROXY, VITE_PORT, VITE_DROP_CONSOLE } = viteENV
-
+  const viteEnv = wrapperEnv(env) // 获取env环境变量参数值
+  const { VITE_PROXY, VITE_PORT, VITE_DROP_CONSOLE } = viteEnv
+  const isBuild = command === 'build'
   return {
-    plugins: [vue()],
-
     server: {
       host: '0.0.0.0',
       port: VITE_PORT,
@@ -60,5 +59,14 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         },
       ],
     },
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: generateModifyVars(),
+          javascriptEnabled: true,
+        },
+      },
+    },
+    plugins: createVitePlugins(viteEnv, isBuild),
   }
 }
