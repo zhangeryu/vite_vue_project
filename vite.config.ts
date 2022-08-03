@@ -24,7 +24,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: VITE_PORT,
       open: true,
       https: false,
-      proxy: createProxy(VITE_PROXY),
+      // proxy: createProxy(VITE_PROXY),
     },
     build: {
       outDir: OUTPUT_DIR,
@@ -68,5 +68,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
     plugins: createVitePlugins(viteEnv, isBuild),
+    // 预构建依赖包
+    optimizeDeps: {
+      include: [
+        '@iconify/iconify',
+        'ant-design-vue/es/locale/zh_CN',
+        'moment/dist/locale/zh-cn',
+        'ant-design-vue/es/locale/en_US',
+        'moment/dist/locale/eu',
+      ],
+    },
   }
 }
