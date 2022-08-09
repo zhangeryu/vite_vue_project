@@ -1,21 +1,14 @@
-<script lang="ts">
-import SvgIcon from '../src/components/Icon/src/SvgIcon.vue'
-import HelloWorld from '@/components/HelloWorld.vue'
-import { ref, defineComponent } from 'vue'
-const { value: port } = ref(import.meta.env.VITE_PORT)
-console.log(port, 'port')
-export default defineComponent({
-  components: {
-    SvgIcon,
-    HelloWorld,
-  },
-})
+<script lang="ts" setup>
+import { ConfigProvider } from 'ant-design-vue'
+import AppProvider from '@/components/Application/src/AppProvider.vue'
 </script>
 
 <template>
-  <h1>Hello Vite</h1>
-  <SvgIcon name="vue" />
-  <HelloWorld msg="hello"></HelloWorld>
+  <ConfigProvider>
+    <AppProvider>
+      <router-view></router-view>
+    </AppProvider>
+  </ConfigProvider>
 </template>
 
 <style scoped></style>
