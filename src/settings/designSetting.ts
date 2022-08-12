@@ -1,5 +1,9 @@
+import { ThemeEnum } from '@/enums/appEnum' // 引入当前默认主题
+
 // 全局样式前缀
 export const prefixCls = 'vben'
+
+export const darkMode = ThemeEnum.LIGHT
 
 // 系统主题
 // app theme preset color

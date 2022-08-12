@@ -1,9 +1,8 @@
 <template>
   <div :class="prefixCls" class="relative w-full h-full px-4">
     <div class="flex items-center absolute right-4 top-4">
-      <h1>login</h1>
-      <!-- <AppDarkModeToggle v-if="!sessionTimeout" class="enter-x mr-2" />
-      <AppLocalePicker
+      <AppDarkModeToggle v-if="!sessionTimeout" class="enter-x mr-2" />
+      <!-- <AppLocalePicker
         v-if="!sessionTimeout && showLocale"
         class="text-white enter-x xl:text-gray-600"
         :show-text="false"
@@ -13,6 +12,7 @@
 </template>
 
 <script lang="ts" setup>
+import AppDarkModeToggle from '@/components/Application/src/AppDarkModeToggle.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 
 defineProps({
@@ -35,7 +35,7 @@ html[data-theme='dark'] {
     background-color: @dark-bg;
 
     &::before {
-      background-image: url(/@/assets/svg/login-bg-dark.svg);
+      background-image: url(@/assets/svg/login-bg-dark.svg);
     }
 
     .ant-input,
@@ -81,7 +81,7 @@ html[data-theme='dark'] {
     width: 100%;
     height: 100%;
     margin-left: -48%;
-    background-image: url(/@/assets/svg/login-bg.svg);
+    background-image: url(@/assets/svg/login-bg.svg);
     background-position: 100%;
     background-repeat: no-repeat;
     background-size: auto 100%;
