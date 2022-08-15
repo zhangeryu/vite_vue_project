@@ -2,17 +2,18 @@
   <div :class="prefixCls" class="relative w-full h-full px-4">
     <div class="flex items-center absolute right-4 top-4">
       <AppDarkModeToggle v-if="!sessionTimeout" class="enter-x mr-2" />
-      <!-- <AppLocalePicker
+      <AppLocalePicker
         v-if="!sessionTimeout && showLocale"
         class="text-white enter-x xl:text-gray-600"
         :show-text="false"
-      /> -->
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import AppDarkModeToggle from '@/components/Application/src/AppDarkModeToggle.vue'
+import AppLocalePicker from '@/components/Application/src/AppLocalePicker.vue'
 import { useDesign } from '@/hooks/web/useDesign'
 
 defineProps({
@@ -20,7 +21,7 @@ defineProps({
     type: Boolean,
   },
 })
-
+const showLocale = true
 const { prefixCls } = useDesign('login')
 console.log(prefixCls, 'pre')
 </script>
