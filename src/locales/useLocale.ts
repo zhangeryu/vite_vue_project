@@ -12,6 +12,7 @@ interface LangModule {
   dateLocaleName: string
 }
 
+// 设置国际化语言
 function setI18nLanguage(locale: LocaleType) {
   const localeStore = useLocaleStoreWithOut()
 
@@ -39,6 +40,7 @@ export function useLocale() {
       setI18nLanguage(locale)
       return locale
     }
+
     const langModule = ((await import(`./lang/${locale}.ts`)) as any).default as LangModule
     if (!langModule) {
       return

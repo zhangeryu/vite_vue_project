@@ -44,6 +44,7 @@ const getLocaleText = computed(() => {
   }
   return localeList.find((item) => item.event === key)?.text
 })
+
 async function toggleLocale(lang: LocaleType | string) {
   await changeLocale(lang as LocaleType)
   selectedKeys.value = [lang as string]

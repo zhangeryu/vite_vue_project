@@ -5,6 +5,7 @@ import { DEFAULT_CACHE_TIME } from '@/settings/encryptionSetting'
 
 export type Options = Partial<CreateStorageParams>
 
+// 创建缓存参数信息
 const createOptions = (storage: Storage, options: Options = {}): Options => {
   return {
     hasEncrypt: enableStorageEncryption,
